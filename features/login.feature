@@ -9,3 +9,4 @@ Feature: Login Feature
   Scenario: Validate login error message
     Then I will login as 'locked_out_user'
     When I will validate the error message 
+ 

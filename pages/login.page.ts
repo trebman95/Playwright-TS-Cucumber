@@ -7,7 +7,7 @@ export class Login {
     private readonly userNameField: string = 'input[id="user-name"]'
     private readonly loginButton: string = 'input[id="login-button"]'
     private readonly errorMessage: string = 'h3[data-test="error"]'
-
+    
     constructor(page: Page) {
         this.page = page;
     }

@@ -4,8 +4,7 @@ Feature: Purchase Feature
     Given I open the "https://www.saucedemo.com/" page
     And I will login as 'standard_user'
 
-
-   Scenario: Validate successful purchase text
+  Scenario: Validate successful purchase text
     When I add the backpack to the cart
     And I go to the cart
     And I proceed to checkout
