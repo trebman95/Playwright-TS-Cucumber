@@ -15,6 +15,7 @@ export const initializePage = async () => {
     page = await browser.newPage();
     page.setDefaultTimeout(DEFAULT_TIMEOUT);
   }
+  return page;
 };
 
 export const getPage = (): Page => {
