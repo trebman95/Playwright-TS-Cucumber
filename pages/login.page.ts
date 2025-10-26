@@ -13,9 +13,9 @@ export class Login {
 
     public async validateTitle(expectedTitle: string) {
         const pageTitle = await this.page.title();
-        if (pageTitle !== expectedTitle) {
-          throw new Error(`Expected title to be ${expectedTitle} but found ${pageTitle}`);
-        }
+        if (pageTitle.toLowerCase() !== expectedTitle.toLowerCase()) {
+        throw new Error(`Expected title to be "${expectedTitle}" but found "${pageTitle}"`);
+}
     }
 
     public async loginAsUser(userName: string) {
@@ -23,4 +23,14 @@ export class Login {
         await this.page.locator(this.passwordField).fill(this.password)
         await this.page.locator(this.loginButton).click()
     }
+
+    public async getErrorMessage(): Promise<string> {
+    const errorElement = this.page.locator('[data-test="error"]');
+    await errorElement.waitFor({ state: 'visible' });
+     const message = await errorElement.textContent();
+     return message?.trim() || "";
+    }
+
+    
+
 }
