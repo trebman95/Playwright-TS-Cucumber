@@ -3,11 +3,12 @@ import { closeBrowser, initializeBrowser, initializePage } from "../playwrightUt
 
 setDefaultTimeout(15000);
 
-Before( async () => {
+Before( async function() {
     await initializeBrowser();
-    await initializePage();
+    const page = await initializePage();
+    this.page = page;
 })
 
-After( async () => {
+After( async function () {
     await closeBrowser();
 })
