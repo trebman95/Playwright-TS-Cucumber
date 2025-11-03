@@ -7,7 +7,11 @@ Feature: Product Feature
   Scenario Outline:  Validate product sort by price <sort>
   Then I will login as 'standard_user'
     # TODO: Sort the items by <sort>
+    When I sort the products by "<SortType>"
     # TODO: Validate all 6 items are sorted correctly by price
+    Then the product prices should be displayed in "<ExpectedOrder>" order
   Examples:
     # TODO: extend the datatable to paramterize this test
-    | sort |
+    |        SortType         |   ExpectedOrder   |
+    | Price (Low to High)     |    ascending      |
+    | Price (High to Low)     |    descending     |
