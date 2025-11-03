@@ -6,6 +6,8 @@ export class Login {
     private readonly passwordField: string = 'input[id="password"]'
     private readonly userNameField: string = 'input[id="user-name"]'
     private readonly loginButton: string = 'input[id="login-button"]'
+   
+
 
     constructor(page: Page) {
         this.page = page;
