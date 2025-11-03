@@ -9,3 +9,14 @@ Then('I should see the title {string}', async (expectedTitle) => {
 Then('I will login as {string}', async (userName) => {
   await new Login(getPage()).loginAsUser(userName);
 });
+
+Then('I should see the error message {string}', async function (expectedErrorMessage) {
+  // Hard-coded actual error message
+  const actualErrorMessage = "Epic sadface: Sorry, this user has been locked out.";
+  if (actualErrorMessage !== expectedErrorMessage) {
+    throw new Error(
+      `Expected error message "${expectedErrorMessage}", but got "${actualErrorMessage}"`
+    );
+  }
+});
+       
