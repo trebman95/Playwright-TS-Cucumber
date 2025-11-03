@@ -1,13 +1,11 @@
-Feature: Product Feature
+Feature: Login Feature
 
   Background:
     Given I open the "https://www.saucedemo.com/" page
 
-  # Create a datatable to validate the Price (high to low) and Price (low to high) sort options (top-right) using a Scenario Outline
-  Scenario Outline:  Validate product sort by price <sort>
-  Then I will login as 'standard_user'
-    # TODO: Sort the items by <sort>
-    # TODO: Validate all 6 items are sorted correctly by price
-  Examples:
-    # TODO: extend the datatable to paramterize this test
-    | sort |
+  Scenario: Validate the login page title
+    Then I should see the title "Swag Labs"
+
+  Scenario: Validate login error message
+    When I login as "locked_out_user"
+    Then I should see an error message "Epic sadface: Sorry, this user has been locked out."
