@@ -12,3 +12,9 @@ Feature: Purchase Feature
     # TODO: Select Continue
     # TODO: Select Finish
     # TODO: Validate the text 'Thank you for your order!'
+    Then I will open the cart
+    Then I will click on Checkout
+    Then I will fill in the details 'Bishwo' 'Poudel' '29708'
+    Then I will click Continue
+    Then I will click Finish
+    Then I should see the text "Thank you for your order!"
