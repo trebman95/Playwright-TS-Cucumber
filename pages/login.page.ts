@@ -23,4 +23,8 @@ export class Login {
         await this.page.locator(this.passwordField).fill(this.password)
         await this.page.locator(this.loginButton).click()
     }
-}
+        
+    public async getErrorText() {
+            return this.page.locator('[data-test="error"]').innerText();
+        }
+    }
