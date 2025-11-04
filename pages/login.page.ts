@@ -6,6 +6,7 @@ export class Login {
     private readonly passwordField: string = 'input[id="password"]'
     private readonly userNameField: string = 'input[id="user-name"]'
     private readonly loginButton: string = 'input[id="login-button"]'
+    private readonly errorMessageLocator: string = '[data-test="error"]';
 
     constructor(page: Page) {
         this.page = page;
@@ -23,4 +24,8 @@ export class Login {
         await this.page.locator(this.passwordField).fill(this.password)
         await this.page.locator(this.loginButton).click()
     }
+    public async validateErrorMessage(expectedMessage: string) {
+        const errorElement = this.page.locator(this.errorMessageLocator);
+        await expect(errorElement).toHaveText(expectedMessage);
+}
 }
