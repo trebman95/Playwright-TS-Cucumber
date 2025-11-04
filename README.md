@@ -1,58 +1,60 @@
-# Sample Playwright Automation Test
+# Playwright-Cucumber-Exercise
 
-## System Requirements
+This project demonstrates end-to-end testing for the [saucedemo.com](https://www.saucedemo.com/) web application using Playwright and Cucumber with TypeScript.
 
-node >= v18.5.x
+## Project Structure
 
-npm >= v7
-
+```
+features/           # Cucumber feature files (Gherkin syntax)
+hooks/              # Cucumber hooks for browser/page lifecycle
+pages/              # Page Object Model classes
+steps/              # Step definitions for feature steps
+playwrightUtilities.ts # Playwright browser/context/page helpers
+playwright.config.ts   # Playwright configuration
+```
 
 ## Setup
 
-// Install Visual Studio Code (or any editor)
+1. **Install dependencies:**
+   ```sh
+   npm install
+   ```
+2. **Install Playwright browsers:**
+   ```sh
+   npx playwright install
+   ```
 
-https://code.visualstudio.com/download
+## Running Tests
 
+- **Run all Cucumber tests:**
 
-// Install Node.js
+  ```sh
+  npm test
+  ```
 
-https://nodejs.org/en/download
+- The browser will run in headed mode so you can watch the tests.
 
+## Given Tasks -
 
-```bash
-git clone https://github.com/automationExamples/Playwright-Cucumber-Exercise.git
-npm install
-npx playwright install
-```
+- [x] Modified the scenario **'Validate the login page title'** from `login.feature` and resolved the failure.
+- [x] Extended the scenario **'Validate login error message'** from `login.feature` to validate the error message received.
+- [x] Modified and extended the scenario **'Validate successful purchase text'** from `purchase.feature` with all required steps and supporting files.
+- [x] Modified and extended the scenario **'Validate product sort by price sort'** from `product.feature` using a Scenario Outline and Examples table for parameterization.
 
-### Recommended vscode extensions
+## Troubleshooting
 
-Cucumber v1.7.0
+- If you see `net::ERR_CONNECTION_RESET`, check your internet connection and firewall settings.
+- If steps are reported as "undefined", ensure the step definition exists and matches the feature file.
+- For dependency issues, run `npm install` and `npx playwright install`.
 
-Cucumber (Gherkin) Support enhanced for Behat
+# Addition Test Coverage
 
+## Menu Coverage
 
-## Instructions
-To run the test
-```bash
-npm run test
-```
+An additional menu test is included to increase coverage. This test verifies:
 
-After running, to generate the cucumber report (cucumber_report.html)
-```bash
-npm run report
-```
+- The menu can be opened
+- The "Reset App State" option works
+- The cart is empty after resetting app state
 
-It is not expected that you complete every task, however, please give your best effort 
-
-You will be scored based on your ability to complete the following tasks:
-
-- [ ] Install and setup this repository on your personal computer
-- [ ] Complete the automation tasks listed below
-
-### Tasks
-- [ ] Modify the scenario 'Validate the login page title' from [login.feature](features/login.feature#8) which runs but fails. Determine the cause of the failure and update the scenario to pass in the test
-- [ ] Extend the scenario 'Validate login error message' from [login.feature](features/login.feature#10) which runs and passes but is missing a step. Extend the scenario to validate the error message received.
-- [ ] Modify and extend the 'Validate successful purchase text' from [purchase.feature](features/purchase.feature#6) with steps for each comment listed. Consider writing a new steps.ts file along with an appropriate page.ts
-- [ ] Modify and extend the 'Validate product sort by price sort' from [product.feature](features/product.feature#6) with steps for each comment listed. Utilize the Scenario Outline and Examples table to parameterize the test
-- [ ] Extend the testing coverage with anything you believe would be beneficial
+Step definitions for these actions are implemented in `steps/menu.steps.ts` using the `Menu` page object.
