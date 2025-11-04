@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test"
+import { expect, Page } from "@playwright/test"
 
 export class Login {
     private readonly page: Page
@@ -23,4 +23,8 @@ export class Login {
         await this.page.locator(this.passwordField).fill(this.password)
         await this.page.locator(this.loginButton).click()
     }
+     async validateErrorMessage(expectedMessage: string) {
+    const errorMessageLocator = this.page.locator('.error-message'); 
+    await expect(errorMessageLocator).toHaveText(expectedMessage);
+  }
 }
