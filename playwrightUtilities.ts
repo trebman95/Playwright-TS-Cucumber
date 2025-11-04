@@ -1,4 +1,4 @@
-import { Browser, chromium, Page } from 'playwright';
+import { Browser, chromium, Page } from "playwright";
 
 let browser: Browser | null = null;
 let page: Page | null = null;
@@ -19,7 +19,9 @@ export const initializePage = async () => {
 
 export const getPage = (): Page => {
   if (!page) {
-    throw new Error('Page has not been initialized. Please call initializePage first.');
+    throw new Error(
+      "Page has not been initialized. Please call initializePage first."
+    );
   }
   return page;
 };
