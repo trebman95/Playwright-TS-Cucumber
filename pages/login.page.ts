@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test"
+import { Page, expect } from "@playwright/test"
 
 export class Login {
     private readonly page: Page
@@ -12,15 +12,16 @@ export class Login {
     }
 
     public async validateTitle(expectedTitle: string) {
-        const pageTitle = await this.page.title();
-        if (pageTitle !== expectedTitle) {
-          throw new Error(`Expected title to be ${expectedTitle} but found ${pageTitle}`);
-        }
+        await expect((await this.page.title()).toString()).toEqual(expectedTitle);
     }
 
     public async loginAsUser(userName: string) {
         await this.page.locator(this.userNameField).fill(userName)
         await this.page.locator(this.passwordField).fill(this.password)
         await this.page.locator(this.loginButton).click()
+    }
+
+    public async validateErrorMessage(errorText: string) {
+        await expect(this.page.getByText(errorText)).toBeVisible();
     }
 }
