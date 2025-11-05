@@ -23,4 +23,9 @@ export class Login {
         await this.page.locator(this.passwordField).fill(this.password)
         await this.page.locator(this.loginButton).click()
     }
+
+    public async getErrorMessage(): Promise<string> {
+        const errorMessageLocator = this.page.locator('h3[data-test="error"]');
+        return await errorMessageLocator.textContent() || '';
+    }
 }
