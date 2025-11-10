@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "test": "cucumber-js --format json:report.json --exit",
+    "test": "cucumber-js --tags 'not @wip' --format json:report.json --exit",
+    "test-debug": "cucumber-js --tags @wip --format json:report.json --exit",
     "report": "node generate-report.js"
   },
   "devDependencies": {

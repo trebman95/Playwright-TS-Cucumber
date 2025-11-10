@@ -1,48 +1,84 @@
-# Sample Playwright Automation Test
+# Sample Playwright/Cucumber Automation Test
 
-## System Requirements
-
-node >= v18.5.x
-
-npm >= v7
-
+For a running log of my progress and decisions during this challenge, see `PROCESS.md`.
 
 ## Setup
 
-// Install Visual Studio Code (or any editor)
+### System Requirements
+- Text Editor
+    - Install Visual Studio Code:
+    https://code.visualstudio.com/download
+    - Recommended vscode extensions
+        - Cucumber v1.7.0
+- node >= v18.5.x
+    - Install Node.js:
+    https://nodejs.org/en/download
+- npm >= v7
 
-https://code.visualstudio.com/download
-
-
-// Install Node.js
-
-https://nodejs.org/en/download
-
-
+### Cloning and Installing Packages
 ```bash
 git clone https://github.com/automationExamples/Playwright-Cucumber-Exercise.git
 npm install
 npx playwright install
 ```
 
-### Recommended vscode extensions
-
-Cucumber v1.7.0
-
-Cucumber (Gherkin) Support enhanced for Behat
-
-
 ## Instructions
-To run the test
+### Running Tests
+Executes test that are not tagged with "@wip"
 ```bash
 npm run test
 ```
 
-After running, to generate the cucumber report (cucumber_report.html)
+### Debugging
+Only executes tests tagged "@wip"
+```bash
+npm run test-debug
+```
+
+### Debugging Tips
+
+- Debug logging step: Use this reusable step during development to inspect matched elements by test id. It’s available to all feature files:
+  - Then I log details of elements with test id "{string}"
+
+- What it prints:
+  - Count of matched elements
+  - Array of each element’s text content
+
+Example
+```
+When I sort products by "Name (A to Z)"
+[debug] active sort option: Name (A to Z)
+    Then I log details of elements with test id "inventory-item-name"
+[debug] getByTestId("inventory-item-name") matched 6 element(s).
+[debug] text contents: [
+  'Sauce Labs Backpack',
+  'Sauce Labs Bike Light',
+  'Sauce Labs Bolt T-Shirt',
+  'Sauce Labs Fleece Jacket',
+  'Sauce Labs Onesie',
+  'Test.allTheThings() T-Shirt (Red)'
+]
+```
+
+## Documentation
+
+Project docs follow a docs-as-code approach and live under `docs/`. Use ADRs for decisions, RFCs for proposals, and `research/` for exploratory findings. Templates live in `docs/docs-as-code.md`.
+
+```
+docs/
+  adr/        Architecture Decision Records
+  rfcs/       Proposals (Requests for Comments)
+  research/   Exploratory notes and findings
+  docs-as-code.md  Guide + templates
+```
+
+### Reporting
+Generates the cucumber report (cucumber_report.html)
+_Use only after running a test command_
 ```bash
 npm run report
 ```
-
+## Original Exercise Details
 It is not expected that you complete every task, however, please give your best effort 
 
 You will be scored based on your ability to complete the following tasks:
