@@ -23,4 +23,16 @@ export class Login {
         await this.page.locator(this.passwordField).fill(this.password)
         await this.page.locator(this.loginButton).click()
     }
+
+    public async enterUsernameOnly(userName: string) {
+        await this.page.locator(this.userNameField).fill(userName);
+    }
+
+    public async clickLogin() {
+        await this.page.locator(this.loginButton).click();
+    }
+
+    public async getErrorMessage(): Promise<string> {
+        return await this.page.locator('[data-test="error"]').innerText();
+    }
 }
