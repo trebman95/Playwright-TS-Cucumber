@@ -23,4 +23,19 @@ export class Login {
         await this.page.locator(this.passwordField).fill(this.password)
         await this.page.locator(this.loginButton).click()
     }
+
+    private async getLoginButtonContainer() {
+        return this.page.locator('#login_button_container');
+    }
+
+    private async getErrorMessageContainer() {
+        const loginContainer = await this.getLoginButtonContainer();
+        return loginContainer.locator('div.error-message-container.error').first();
+    }
+
+    public async getErrorMessage(): Promise<string> {
+        const errorContainer = await this.getErrorMessageContainer();
+        const errorMessage = await errorContainer.locator('h3').textContent();
+        return errorMessage || '';
+    }
 }
