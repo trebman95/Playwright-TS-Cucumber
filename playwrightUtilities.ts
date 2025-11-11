@@ -6,13 +6,20 @@ const DEFAULT_TIMEOUT = 30000;
 
 export const initializeBrowser = async () => {
   if (!browser) {
-    browser = await chromium.launch({ headless: false });
+    browser = await chromium.launch({
+      headless: false,
+      args: [
+        '--disable-web-security',
+        '--disable-features=IsolateOrigins,site-per-process'
+      ]
+    });
   }
 };
 
 export const initializePage = async () => {
   if (browser && !page) {
-    page = await browser.newPage();
+    const context = await browser.newContext({ ignoreHTTPSErrors: true });
+    page = await context.newPage();
     page.setDefaultTimeout(DEFAULT_TIMEOUT);
   }
 };
