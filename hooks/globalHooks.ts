@@ -1,13 +1,12 @@
 import { After, Before, setDefaultTimeout } from "@cucumber/cucumber";
-import { closeBrowser, initializeBrowser, initializePage } from "../playwrightUtilities";
+import { CustomWorld } from "../support/world";
 
 setDefaultTimeout(15000);
 
-Before( async () => {
-    await initializeBrowser();
-    await initializePage();
-})
+Before(async function(this: CustomWorld) {
+    await this.init();
+});
 
-After( async () => {
-    await closeBrowser();
-})
+After(async function(this: CustomWorld) {
+    await this.destroy();
+});
