@@ -12,3 +12,9 @@ Feature: Purchase Feature
     # TODO: Select Continue
     # TODO: Select Finish
     # TODO: Validate the text 'Thank you for your order!'
+     Then I open the cart
+     Then I checkout
+     Then I enter checkout information first name "Navdeep" last name "Singh" zip "48001"
+     Then I continue to overview
+     Then I finish the purchase
+     Then I should see purchase confirmation text "Thank you for your order!"
