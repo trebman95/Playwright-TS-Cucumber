@@ -2,8 +2,8 @@ import { Page } from "@playwright/test"
 
 export class Cart {
     private readonly page: Page
-    private readonly cartBadge: string = '.shopping_cart_badge'
-    private readonly removeBackpack: string = 'button[id="remove-sauce-labs-backpack"]'
+    private readonly cartBadge: string = '[data-test="shopping-cart-badge"]'
+    private readonly removeBackpack: string = '[data-test="remove-sauce-labs-backpack"]';
 
     constructor(page: Page) {
         this.page = page;

@@ -2,14 +2,14 @@ import { Page } from "@playwright/test"
 
 export class Purchase {
     private readonly page: Page
-    private readonly cartIcon: string = 'a.shopping_cart_link'
-    private readonly checkoutButton: string = 'button[id="checkout"]'
-    private readonly firstNameField: string = 'input[id="first-name"]'
-    private readonly lastNameField: string = 'input[id="last-name"]'
-    private readonly zipCodeField: string = 'input[id="postal-code"]'
-    private readonly continueButton: string = 'input[id="continue"]'
-    private readonly finishButton: string = 'button[id="finish"]'
-    private readonly confirmationText: string = '.complete-header'
+    private readonly cartIcon: string = '[data-test="shopping-cart-link"]'
+    private readonly checkoutButton: string = '[data-test="checkout"]'
+    private readonly firstNameField: string = '[data-test="firstName"]'
+    private readonly lastNameField: string = '[data-test="lastName"]'
+    private readonly zipCodeField: string = '[data-test="postalCode"]'
+    private readonly continueButton: string = '[data-test="continue"]'
+    private readonly finishButton: string = '[data-test="finish"]'
+    private readonly confirmationText: string = '[data-test="complete-header"]'
 
     constructor(page: Page) {
         this.page = page;
