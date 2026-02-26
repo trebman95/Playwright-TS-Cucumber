@@ -23,4 +23,16 @@ export class Login {
         await this.page.locator(this.passwordField).fill(this.password)
         await this.page.locator(this.loginButton).click()
     }
+     public async validateLoginError(expected: string) {
+    const errorMessage = await this.page
+      .locator('h3[data-test="error"]')
+      .innerText();
+
+    if (errorMessage.trim() !== expected) {
+      throw new Error(
+        `Expected error message to be "${expected}" but found "${errorMessage}"`
+      );
+    }
+  }
 }
+
