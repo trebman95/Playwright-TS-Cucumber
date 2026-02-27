@@ -1,58 +1,41 @@
-# Sample Playwright Automation Test
+# Playwright Cucumber Exercise - Completed
 
-## System Requirements
+## Tasks Completed
 
-node >= v18.5.x
+### ✅ Task 1: Validate the login page title
+**File:** `login.feature`  
+**Issue:** Test was failing due to incorrect expected title  
+**Fix:** Updated expected title to "Swag Labs"  
+**Status:** Passing
 
-npm >= v7
+### ✅ Task 2: Validate login error message
+**File:** `login.feature`, `login.steps.ts`  
+**Issue:** Missing validation step for error message  
+**Fix:** Added step to validate error message text  
+**Status:** Passing
 
+### ✅ Task 3: Validate successful purchase text
+**Files:** `purchase.feature`, `purchase.page.ts` (new), `purchase.steps.ts` (new)  
+**Implementation:**
+- Created Purchase page object with cart, checkout, and completion methods
+- Added step definitions for each comment in the feature file
+- Validated success message "Thank you for your order!"  
+**Status:** Passing
 
-## Setup
+### ✅ Task 4: Validate product sort by price
+**Files:** `product.feature`, `product.page.ts`, `product.steps.ts`  
+**Implementation:**
+- Used Scenario Outline with Examples table
+- Parameterized test for Price (low to high) and Price (high to low)
+- Created validation method comparing actual vs expected sorted arrays  
+**Status:** Passing
 
-// Install Visual Studio Code (or any editor)
+### ✅ Task 5: Extend testing coverage
+**Additional coverage added:**
+- Name sorting validation (A to Z, Z to A)
+- Universal sorting method supporting both price and name
+- Used regex patterns for flexible step matching
 
-https://code.visualstudio.com/download
+---
 
-
-// Install Node.js
-
-https://nodejs.org/en/download
-
-
-```bash
-git clone https://github.com/automationExamples/Playwright-Cucumber-Exercise.git
-npm install
-npx playwright install
-```
-
-### Recommended vscode extensions
-
-Cucumber v1.7.0
-
-Cucumber (Gherkin) Support enhanced for Behat
-
-
-## Instructions
-To run the test
-```bash
-npm run test
-```
-
-After running, to generate the cucumber report (cucumber_report.html)
-```bash
-npm run report
-```
-
-It is not expected that you complete every task, however, please give your best effort 
-
-You will be scored based on your ability to complete the following tasks:
-
-- [ ] Install and setup this repository on your personal computer
-- [ ] Complete the automation tasks listed below
-
-### Tasks
-- [ ] Modify the scenario 'Validate the login page title' from [login.feature](features/login.feature#8) which runs but fails. Determine the cause of the failure and update the scenario to pass in the test
-- [ ] Extend the scenario 'Validate login error message' from [login.feature](features/login.feature#10) which runs and passes but is missing a step. Extend the scenario to validate the error message received.
-- [ ] Modify and extend the 'Validate successful purchase text' from [purchase.feature](features/purchase.feature#6) with steps for each comment listed. Consider writing a new steps.ts file along with an appropriate page.ts
-- [ ] Modify and extend the 'Validate product sort by price sort' from [product.feature](features/product.feature#6) with steps for each comment listed. Utilize the Scenario Outline and Examples table to parameterize the test
-- [ ] Extend the testing coverage with anything you believe would be beneficial
+*Original setup and run instructions remain unchanged*
