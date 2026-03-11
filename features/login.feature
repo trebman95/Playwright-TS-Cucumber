@@ -4,9 +4,16 @@ Feature: Login Feature
     Given I open the "https://www.saucedemo.com/" page
 
   Scenario: Validate the login page title
-    # TODO: Fix this failing scenario
-    Then I should see the title "Labs Swag"
+    Then I should see the title "Swag Labs"
 
-  Scenario: Validate login error message
-    Then I will login as 'locked_out_user'
-    # TODO: Add a step to validate the error message received
+  Scenario Outline: Login validation as different users
+    Then I will login as '<username>' with this password '<password>'
+    Then I should see this result '<result>'
+
+
+    Examples:
+      | username        | password     | result            |
+      | standard_user   | secret_sauce | inventory page    |
+      | locked_out_user | secret_sauce | error message     |
+      | invalid_user    | wrong_pass   | error message     |
+      |                 |              | username required |
