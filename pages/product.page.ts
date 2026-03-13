@@ -11,4 +11,7 @@ export class Product {
     public async addBackPackToCart() {
         await this.page.locator(this.addToCart).click()
     }
+    public async Sorting(){
+        this.page.locator  
+    }
 }
