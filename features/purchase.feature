@@ -12,3 +12,20 @@ Feature: Purchase Feature
     # TODO: Select Continue
     # TODO: Select Finish
     # TODO: Validate the text 'Thank you for your order!'
+
+  Then I open the shopping cart
+  Then I proceed to checkout
+  Then I enter checkout information: first name "Senia", last name "Chap", postal code "28212"
+  Then I continue to the checkout overview
+  Then I complete the purchase
+  Then I should see the order confirmation message "Thank you for your order!"
+
+
+#Extend the testing coverage
+  Scenario: Validate checkout error when customer info is missing
+    Then I will login as 'standard_user'
+    Then I will add the backpack to the cart
+    Then I open the shopping cart
+    Then I proceed to checkout
+    Then I continue to the checkout overview
+    Then I should see the checkout error message "Error: First Name is required"
