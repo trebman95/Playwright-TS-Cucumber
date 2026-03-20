@@ -38,11 +38,6 @@ To run the test
 npm run test
 ```
 
-After running, to generate the cucumber report (cucumber_report.html)
-```bash
-npm run report
-```
-
 It is not expected that you complete every task, however, please give your best effort 
 
 You will be scored based on your ability to complete the following tasks:

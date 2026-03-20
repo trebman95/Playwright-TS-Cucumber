@@ -6,7 +6,8 @@ const DEFAULT_TIMEOUT = 30000;
 
 export const initializeBrowser = async () => {
   if (!browser) {
-    browser = await chromium.launch({ headless: false });
+    const isCI = process.env.CI === "true";
+    browser = await chromium.launch({ headless: isCI });
   }
 };
 
