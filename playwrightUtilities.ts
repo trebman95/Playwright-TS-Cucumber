@@ -1,4 +1,5 @@
 import { Browser, chromium, Page } from 'playwright';
+import { faker } from '@faker-js/faker';
 
 let browser: Browser | null = null;
 let page: Page | null = null;
@@ -31,3 +32,18 @@ export const closeBrowser = async () => {
     page = null;
   }
 };
+
+export const getRandomFirstName = ():string =>{
+  return faker.person.firstName();
+}
+
+export const getRandomLastName = ():string =>{
+  return faker.person.lastName();
+}
+
+export const getRandomZipCode = ():string =>{
+  return faker.location.zipCode("#####");
+}
+
+
+
