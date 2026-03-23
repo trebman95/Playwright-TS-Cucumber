@@ -18,7 +18,7 @@ export class Login {
         }
     }
 
-    public async loginAsUser(userName: string) {
+    public async loginAsUser(userName: string, password: string = this.password) {
         await this.page.locator(this.userNameField).fill(userName)
         await this.page.locator(this.passwordField).fill(this.password)
         await this.page.locator(this.loginButton).click()
