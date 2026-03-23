@@ -26,7 +26,7 @@ jobs:
           token: ${{ secrets.GRADER_REPO_PAT }}
           repository: automationExamples/Playwright-Cucumber-Exercise-Eval
           event-type: grade-assessment
-          client-payload: >
+          client-payload: '{"pr_number": "${{ env.PR_NUMBER }}","repo_full": "${{github.respository }}"}'
             {
               "pr_number": "${{ github.event_name == 'workflow_dispatch' && github.event.inputs.pr_number || github.event.pull_request.number }}",
               "repo_full": "${{ github.repository }}"
