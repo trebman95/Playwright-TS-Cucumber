@@ -55,14 +55,14 @@ You will be scored based on your ability to complete the following tasks:
 - [X] Modify and extend the 'Validate product sort by price sort' from [product.feature](features/product.feature#6) with steps for each comment listed. Utilize the Scenario Outline and Examples table to parameterize the test
 - [X] Extend the testing coverage with anything you believe would be beneficial
 
-#### Solution Implementation
+### Solution Implementation
 The following tasks were completed and extended:
 
 Login
 - Fixed login page title validation
 - Implemented locked-out user error validation
 
-##### Purchase Flow (End-to-End)
+### Purchase Flow (End-to-End)
 -Add product to cart
 -Navigate to cart
 -Proceed to checkout
@@ -70,7 +70,7 @@ Login
 -Complete purchase
 -Validate success message
 
-###### Product Sorting
+### Product Sorting
 -Implemented sorting validation using Scenario Outline
 -Supported:
      Price (low to high)
@@ -78,10 +78,10 @@ Login
 -Extracted prices dynamically from UI
 -Compared actual values with sorted results
 
-###### Additional Test Coverage
+### Additional Test Coverage
 - Cart icon item count validation
 
-###### Framework Design
+### Framework Design
 
 The project follows automation best practices:
 -Page Object Model (POM)
@@ -92,13 +92,13 @@ The project follows automation best practices:
 -Page objects → UI interactions
 -Reusable methods and stable selectors (id, data-test) are used to improve maintainability.
 
-###### Test Report
+### Test Report
 An HTML test report is included:
 cucumber_report.html
 The report can be opened directly in a browser.
-###### Notes
+### Notes
 Sorting validation is implemented dynamically (no hardcoded values)
 Stable selectors (id, data-test) are used where applicable
 The framework is designed to be scalable and maintainable
-###### Summary
+### Summary
 This project demonstrates an end-to-end automation solution with structured test design, reusable components, and extended test coverage.
