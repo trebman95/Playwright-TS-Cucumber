@@ -1,14 +1,32 @@
 {
+  "name": "playwright-cucumber-exercise",
+  "version": "1.0.0",
+  "description": "node >= v18.5.x",
+  "homepage": "https://github.com/automationExamples/Playwright-Cucumber-Exercise#readme",
+  "bugs": {
+    "url": "https://github.com/automationExamples/Playwright-Cucumber-Exercise/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/automationExamples/Playwright-Cucumber-Exercise.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "cucumber.js",
   "scripts": {
     "test": "cucumber-js --format json:report.json --exit",
     "report": "node generate-report.js"
   },
   "devDependencies": {
-    "@cucumber/cucumber": "^10.0.1",
+    "@cucumber/cucumber": "^12.7.0",
     "@cucumber/pretty-formatter": "^1.0.0",
     "@playwright/test": "^1.40.1",
     "@types/node": "^20.10.3",
-    "cucumber-html-reporter": "^7.1.1",
+    "bdd": "^1.0.1",
+    "cucumber-html-reporter": "^6.0.0",
+    "playwright": "^1.58.2",
+    "playwright-bdd": "^8.5.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.3.2"
   }

@@ -4,27 +4,28 @@ let browser: Browser | null = null;
 let page: Page | null = null;
 const DEFAULT_TIMEOUT = 30000;
 
-export const initializeBrowser = async () => {
+// Initialize browser and page
+export const initBrowser = async (): Promise<Page> => {
   if (!browser) {
     browser = await chromium.launch({ headless: false });
   }
-};
-
-export const initializePage = async () => {
-  if (browser && !page) {
+  if (!page) {
     page = await browser.newPage();
     page.setDefaultTimeout(DEFAULT_TIMEOUT);
-  }
-};
-
-export const getPage = (): Page => {
-  if (!page) {
-    throw new Error('Page has not been initialized. Please call initializePage first.');
   }
   return page;
 };
 
-export const closeBrowser = async () => {
+// Safe getter
+export const getPage = (): Page => {
+  if (!page) {
+    throw new Error('Page has not been initialized. Please call initBrowser first.');
+  }
+  return page;
+};
+
+// Close browser and reset
+export const closeBrowser = async (): Promise<void> => {
   if (browser) {
     await browser.close();
     browser = null;
