@@ -1,4 +1,4 @@
-import { Browser, chromium, Page } from 'playwright';
+import { Browser, chromium, Page } from '@playwright/test';
 
 let browser: Browser | null = null;
 let page: Page | null = null;
@@ -6,7 +6,10 @@ const DEFAULT_TIMEOUT = 30000;
 
 export const initializeBrowser = async () => {
   if (!browser) {
-    browser = await chromium.launch({ headless: false });
+    browser = await chromium.launch({
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+    });
   }
 };
 
