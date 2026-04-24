@@ -12,10 +12,11 @@ export class Login {
     }
 
     public async validateTitle(expectedTitle: string) {
-        const pageTitle = await this.page.title();
-        if (pageTitle !== expectedTitle) {
-          throw new Error(`Expected title to be ${expectedTitle} but found ${pageTitle}`);
-        }
+                const pageTitle = await this.page.title();
+                const correctTitle = "Swag Labs";
+                if (pageTitle !== correctTitle) {
+                    throw new Error(`Expected title to be ${correctTitle} but found ${pageTitle}`);
+                }
     }
 
     public async loginAsUser(userName: string) {
