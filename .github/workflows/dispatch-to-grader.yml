@@ -1,0 +1,33 @@
+name: Dispatch to Grader
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR number in this repo (e.g., 119)'
+        required: true
+
+jobs:
+  notify-grader:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify token can access private grader repo
+        run: |
+          code=$(curl -s -o /dev/null -w "%{http_code}\n" \
+            -H "Authorization: token ${{ secrets.GRADER_REPO_PAT }}" \
+            https://api.github.com/repos/automationExamples/Playwright-Cucumber-Exercise-Eval)
+          echo "HTTP $code"; test "$code" = "200"
+
+      - name: Send repository_dispatch to grader
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.GRADER_REPO_PAT }}
+          repository: automationExamples/Playwright-Cucumber-Exercise-Eval
+          event-type: grade-assessment
+          client-payload: >
+            {
+              "pr_number": "${{ github.event_name == 'workflow_dispatch' && github.event.inputs.pr_number || github.event.pull_request.number }}",
+              "repo_full": "${{ github.repository }}"
+            }
