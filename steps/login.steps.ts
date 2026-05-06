@@ -1,11 +1,13 @@
-import { Then } from '@cucumber/cucumber';
-import { getPage } from '../playwrightUtilities';
+import { test } from 'playwright-bdd';
+import { createBdd } from 'playwright-bdd';
 import { Login } from '../pages/login.page';
 
-Then('I should see the title {string}', async (expectedTitle) => {
-  await new Login(getPage()).validateTitle(expectedTitle);
+const { Then } = createBdd(test);
+
+Then('I should see the title {string}', async ({ page }, expectedTitle) => {
+  await new Login(page).validateTitle(expectedTitle);
 });
 
-Then('I will login as {string}', async (userName) => {
-  await new Login(getPage()).loginAsUser(userName);
+Then('I will login as {string}', async ({ page }, userName) => {
+  await new Login(page).loginAsUser(userName);
 });

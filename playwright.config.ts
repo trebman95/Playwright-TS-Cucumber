@@ -1,9 +1,15 @@
-import { PlaywrightTestConfig } from '@playwright/test';
+import { defineConfig } from '@playwright/test';
+import { defineBddConfig } from 'playwright-bdd';
 
-const config: PlaywrightTestConfig = {
+const testDir = defineBddConfig({
+  features: 'features/**/*.feature',
+  steps: 'steps/**/*.ts',
+  hooks: 'hooks/**/*.ts'
+});
+
+export default defineConfig({
+  testDir,
   use: {
     headless: false,
   },
-};
-
-export default config;
+});
