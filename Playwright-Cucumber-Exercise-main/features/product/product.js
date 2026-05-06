@@ -1,6 +1,6 @@
-import { createBdd } from "playwright-bdd";
-import { test, expect } from '@playwright/test';
-const { Given, When, Then }= createBdd();
+import { test,createBdd } from "playwright-bdd";
+import {  expect } from '@playwright/test';
+const { Given, When, Then }= createBdd(test);
   
 Given('I open the Product page', async({page},url) => {
 	await page.goto(url);

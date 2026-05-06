@@ -1,10 +1,10 @@
 //import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
-import { createBdd } from "playwright-bdd";
+import { test, createBdd } from "playwright-bdd";
 
 import { expect } from "@playwright/test"; // Import expect
 
 
-const { Given, When, Then }= createBdd();
+const { Given, When, Then }= createBdd(test);
 
 Given('I open the {string} page', async ({page}, url) => {
 	await page.goto(url);

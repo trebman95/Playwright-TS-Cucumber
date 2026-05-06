@@ -1,13 +1,11 @@
-import { After, Before, setDefaultTimeout } from "@cucumber/cucumber";
-import { closeBrowser, initializeBrowser, initializePage } from "../playwrightUtilities";
+import { Before, After, setDefaultTimeout } from 'playwright-bdd';
 
 setDefaultTimeout(15000);
 
-Before( async () => {
-    await initializeBrowser();
-    await initializePage();
-})
+Before(async ({ page }) => {
+    // Setup before each scenario
+});
 
-After( async () => {
-    await closeBrowser();
-})
+After(async ({ page }) => {
+    // Cleanup after each scenario
+});

@@ -1,6 +1,8 @@
-import { Given } from "@cucumber/cucumber";
-import { getPage } from "../playwrightUtilities";
+import { test } from 'playwright-bdd';
+import { createBdd } from 'playwright-bdd';
 
-Given('I open the {string} page', async (url) => {
-    await getPage().goto(url);
+const { Given } = createBdd(test);
+
+Given('I open the {string} page', async ({ page }, url) => {
+    await page.goto(url);
   });

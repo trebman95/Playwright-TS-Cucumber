@@ -1,6 +1,6 @@
-import { createBdd } from "playwright-bdd";
+import { test, createBdd } from "playwright-bdd";
 
-const { Given, When, Then }= createBdd();
+const { Given, When, Then }= createBdd(test);
 
 //import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
  

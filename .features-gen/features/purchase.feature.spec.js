@@ -1,4 +1,4 @@
-// Generated from: Playwright-Cucumber-Exercise-main\features\purchase.feature
+// Generated from: features\purchase.feature
 import { test } from "playwright-bdd";
 
 test.describe('Purchase Feature', () => {
@@ -18,7 +18,7 @@ test.describe('Purchase Feature', () => {
 
 test.use({
   $test: [({}, use) => use(test), { scope: 'test', box: true }],
-  $uri: [({}, use) => use('Playwright-Cucumber-Exercise-main\\features\\purchase.feature'), { scope: 'test', box: true }],
+  $uri: [({}, use) => use('features\\purchase.feature'), { scope: 'test', box: true }],
   $bddFileData: [({}, use) => use(bddFileData), { scope: "test", box: true }],
 });
 
