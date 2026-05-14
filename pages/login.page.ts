@@ -23,4 +23,19 @@ export class Login {
         await this.page.locator(this.passwordField).fill(this.password)
         await this.page.locator(this.loginButton).click()
     }
+
+    public async validateErrorMessage(expectedMessage: string) {
+        const errorElement = this.page.locator('[data-test="error"]');
+        const actualMessage = await errorElement.textContent();
+        if (actualMessage !== expectedMessage) {
+            throw new Error(`Expected error message "${expectedMessage}" but got "${actualMessage}"`);
+        }
+    }
+
+    public async validateLoginFailed() {
+        const loginButton = this.page.locator(this.loginButton);
+        if (!(await loginButton.isVisible())) {
+            throw new Error('Login should have failed, but login button is not visible');
+        }
+    }
 }

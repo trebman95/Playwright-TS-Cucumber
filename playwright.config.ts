@@ -1,9 +1,9 @@
-import { PlaywrightTestConfig } from '@playwright/test';
+import { defineConfig, PlaywrightTestConfig } from '@playwright/test';
 
-const config: PlaywrightTestConfig = {
+const config: PlaywrightTestConfig = defineConfig({
   use: {
     headless: false,
   },
-};
+});
 
 export default config;
