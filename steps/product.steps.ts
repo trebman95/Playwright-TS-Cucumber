@@ -13,3 +13,4 @@ Then('I sort the items by {string}', async (sortOption: string) => {
 Then('I should see all items sorted by price {string}', async (sortOption: string) => {
   await new Product(getPage()).validatePriceSort(sortOption);
 });
+
