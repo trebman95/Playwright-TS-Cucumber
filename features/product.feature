@@ -8,6 +8,10 @@ Feature: Product Feature
   Then I will login as 'standard_user'
     # TODO: Sort the items by <sort>
     # TODO: Validate all 6 items are sorted correctly by price
+  And I sort the products by "<sort>"
+  Then products should be sorted correctly by "<sort>"
   Examples:
     # TODO: extend the datatable to paramterize this test
     | sort |
+    |Price (low to high) |
+    |Price (high to low) |
