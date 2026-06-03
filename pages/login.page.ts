@@ -23,4 +23,19 @@ export class Login {
         await this.page.locator(this.passwordField).fill(this.password)
         await this.page.locator(this.loginButton).click()
     }
+
+    public async attemptLogin(userName: string, password: string) {
+        await this.page.locator(this.userNameField).fill(userName)
+        await this.page.locator(this.passwordField).fill(password)
+        await this.page.locator(this.loginButton).click()
+    }
+
+    private readonly errorMessage: string = '[data-test="error"]';
+
+    public async validateErrorMessage(expectedError: string) {
+        const actualError = await this.page.locator(this.errorMessage).textContent();
+        if (actualError !== expectedError) {
+            throw new Error(`Expected error to be ${expectedError} but found ${actualError}`);
+        }
+    }
 }
