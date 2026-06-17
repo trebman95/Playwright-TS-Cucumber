@@ -2,7 +2,8 @@ import { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
   use: {
-    headless: false,
+    headless: process.env.HEADLESS !== 'false',
+    channel: process.env.BROWSER_CHANNEL,
   },
 };
 
