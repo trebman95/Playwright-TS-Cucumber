@@ -8,9 +8,9 @@ export class Login {
     private readonly loginButton: string = 'input[id="login-button"]'
 
     constructor(page: Page) {
-        this.page = page;
+        this.page = page; 
     }
-
+ 
     public async validateTitle(expectedTitle: string) {
         const pageTitle = await this.page.title();
         if (pageTitle !== expectedTitle) {
@@ -22,5 +22,13 @@ export class Login {
         await this.page.locator(this.userNameField).fill(userName)
         await this.page.locator(this.passwordField).fill(this.password)
         await this.page.locator(this.loginButton).click()
+    }
+
+    public async validateErrorMessage(expectedMessage: string) {
+        const errorElement = await this.page.locator('[data-test="error"]');
+        const actualMessage = await errorElement.textContent();
+        if (!actualMessage?.includes(expectedMessage)) {
+            throw new Error(`Expected error message "${expectedMessage}" but found "${actualMessage}"`);
+        }
     }
 }
