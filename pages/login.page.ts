@@ -6,6 +6,9 @@ export class Login {
     private readonly passwordField: string = 'input[id="password"]'
     private readonly userNameField: string = 'input[id="user-name"]'
     private readonly loginButton: string = 'input[id="login-button"]'
+    private readonly lockOutMessage: string = '[data-test="error"]'
+    private readonly lockedOutMessage: string = 'This user has been locked out.'
+
 
     constructor(page: Page) {
         this.page = page;
@@ -22,5 +25,14 @@ export class Login {
         await this.page.locator(this.userNameField).fill(userName)
         await this.page.locator(this.passwordField).fill(this.password)
         await this.page.locator(this.loginButton).click()
+    }
+
+    // Waits for the error message to appear, then checks it matches the expected text
+    public async validateErrorMessage(expectedMessage: string) {
+        await this.page.locator(this.lockOutMessage).waitFor({ state: 'visible' })
+        const actualMessage = await this.page.locator(this.lockOutMessage).innerText()
+        if (actualMessage !== expectedMessage) {
+            throw new Error(`Expected error message "${expectedMessage}" but found "${actualMessage}"`)
+        }
     }
 }
