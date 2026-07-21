@@ -4,9 +4,22 @@ let browser: Browser | null = null;
 let page: Page | null = null;
 const DEFAULT_TIMEOUT = 30000;
 
+const launchOptions = {
+  headless: true,
+  args: ['--no-sandbox', '--disable-dev-shm-usage'],
+};
+
 export const initializeBrowser = async () => {
   if (!browser) {
-    browser = await chromium.launch({ headless: false });
+    try {
+      browser = await chromium.launch({
+        ...launchOptions,
+        channel: 'chrome',
+      });
+    } catch (error) {
+      console.warn('System Chrome was not available, falling back to bundled Chromium.', error);
+      browser = await chromium.launch(launchOptions);
+    }
   }
 };
 
