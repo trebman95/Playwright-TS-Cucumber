@@ -12,3 +12,9 @@ Feature: Purchase Feature
     # TODO: Select Continue
     # TODO: Select Finish
     # TODO: Validate the text 'Thank you for your order!'
+    Then I select the cart
+    Then I select checkout
+    Then I fill in the checkout information with "First", "Last", "12345"
+    Then I select continue
+    Then I select finish
+    Then I validate the successful purchase text is "Thank you for your order!"
