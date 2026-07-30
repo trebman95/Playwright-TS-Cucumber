@@ -6,8 +6,11 @@ Feature: Product Feature
   # Create a datatable to validate the Price (high to low) and Price (low to high) sort options (top-right) using a Scenario Outline
   Scenario Outline:  Validate product sort by price <sort>
   Then I will login as 'standard_user'
-    # TODO: Sort the items by <sort>
-    # TODO: Validate all 6 items are sorted correctly by price
+  Then I click on filter and choose "<sort_option>" and "<expected_order>"
+  Then I validate item order
   Examples:
-    # TODO: extend the datatable to paramterize this test
-    | sort |
+  | sort_option | expected_order |
+  | Price | descending |
+  | Price | ascending |
+  | Name | descending |
+  | Name | ascending |
