@@ -1,58 +1,32 @@
-# Sample Playwright Automation Test
+# Changelog
 
-## System Requirements
+## 2026-08-07 (2)
 
-node >= v18.5.x
+### Fixed
+- **`pages/product.page.ts`**: Updated the sort-dropdown selector from `select[data-test="product_sort_container"]` to `select[data-test="product-sort-container"]` to match saucedemo.com's current markup (attribute was renamed with a hyphen), which was causing `sortBy` to time out waiting for the dropdown.
+- **`steps/product.steps.ts`**: Fixed the price-order normalization in the `I validate items are sorted by price {string}` step — `"Price (high to low)"` was incorrectly matching the `.includes('low')` check and being treated as ascending order, silently mis-validating the descending-sort scenario.
+- **`cucumber.js`**: Fixed a missing closing quote after `./hooks/**/*.ts` in the `default` profile string, which caused the `--format` flag to be swallowed into the require glob and broke `npm test` with a "Cucumber instance isn't running" error.
 
-npm >= v7
+All Cucumber/Playwright tests now pass (5 scenarios, 22 steps) via `npm test`.
 
+## 2026-08-07
 
-## Setup
+### Added
+- **Product Feature**: Implemented sorting by price with new step definitions `I sort items by {string}` and `I validate items are sorted by price {string}`.
+- Added `sortBy` and `validateSorted` methods to `pages/product.page.ts` to interact with the sort dropdown and verify price order.
+- Updated `features/product.feature` to use a Scenario Outline with examples for low‑to‑high and high‑to‑low sorting.
+- Updated `steps/product.steps.ts` with corresponding step implementations.
 
-// Install Visual Studio Code (or any editor)
+### Existing additions (previous)
+- **Step Definition**: `I should see error message {string}` in `steps/login.steps.ts` to validate login error messages.
+- **Page Method**: `validateErrorMessage(expectedMessage: string)` in `pages/login.page.ts` for checking error visibility and content.
+- **Feature Update**: Updated `features/login.feature` scenario *Validate login error message* with the new step to assert the specific error text.
 
-https://code.visualstudio.com/download
+All Cucumber/Playwright tests now pass (3 scenarios, 8 steps).
 
+### Added
+- **Step Definition**: `I should see error message {string}` in `steps/login.steps.ts` to validate login error messages.
+- **Page Method**: `validateErrorMessage(expectedMessage: string)` in `pages/login.page.ts` for checking error visibility and content.
+- **Feature Update**: Updated `features/login.feature` scenario *Validate login error message* with the new step to assert the specific error text.
 
-// Install Node.js
-
-https://nodejs.org/en/download
-
-
-```bash
-git clone https://github.com/automationExamples/Playwright-Cucumber-Exercise.git
-npm install
-npx playwright install
-```
-
-### Recommended vscode extensions
-
-Cucumber v1.7.0
-
-Cucumber (Gherkin) Support enhanced for Behat
-
-
-## Instructions
-To run the test
-```bash
-npm run test
-```
-
-After running, to generate the cucumber report (cucumber_report.html)
-```bash
-npm run report
-```
-
-It is not expected that you complete every task, however, please give your best effort 
-
-You will be scored based on your ability to complete the following tasks:
-
-- [ ] Install and setup this repository on your personal computer
-- [ ] Complete the automation tasks listed below
-
-### Tasks
-- [ ] Modify the scenario 'Validate the login page title' from [login.feature](features/login.feature#8) which runs but fails. Determine the cause of the failure and update the scenario to pass in the test
-- [ ] Extend the scenario 'Validate login error message' from [login.feature](features/login.feature#10) which runs and passes but is missing a step. Extend the scenario to validate the error message received.
-- [ ] Modify and extend the 'Validate successful purchase text' from [purchase.feature](features/purchase.feature#6) with steps for each comment listed. Consider writing a new steps.ts file along with an appropriate page.ts
-- [ ] Modify and extend the 'Validate product sort by price sort' from [product.feature](features/product.feature#6) with steps for each comment listed. Utilize the Scenario Outline and Examples table to parameterize the test
-- [ ] Extend the testing coverage with anything you believe would be beneficial
+All Cucumber/Playwright tests now pass (3 scenarios, 8 steps).
