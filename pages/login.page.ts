@@ -19,8 +19,27 @@ export class Login {
     }
 
     public async loginAsUser(userName: string) {
-        await this.page.locator(this.userNameField).fill(userName)
-        await this.page.locator(this.passwordField).fill(this.password)
-        await this.page.locator(this.loginButton).click()
+        await this.page.locator(this.userNameField).fill(userName);
+        await this.page.locator(this.passwordField).fill(this.password);
+        await this.page.locator(this.loginButton).click({ noWaitAfter: true });
+        // Wait for navigation to the inventory page after successful login, but ignore if login fails (e.g., locked out user).
+
+        try {
+            await this.page.waitForURL('**/inventory.html', { timeout: 5000 });
+        } catch (e) {
+            // Navigation didn't happen, likely due to login error; continue without throwing.
+        }
+    }
+
+  public async validateErrorMessage(expectedMessage: string) {
+        const errorLocator = this.page.locator('[data-test="error"]');
+        const visible = await errorLocator.isVisible();
+        if (!visible) {
+            throw new Error('Error message is not visible');
+        }
+        const actualMessage = await errorLocator.textContent();
+        if (actualMessage?.trim() !== expectedMessage.trim()) {
+            throw new Error(`Expected error message to be "${expectedMessage}" but got "${actualMessage}"`);
+        }
     }
 }
