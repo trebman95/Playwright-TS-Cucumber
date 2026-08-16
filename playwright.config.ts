@@ -1,8 +1,9 @@
 import { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
+  testDir: './tests',
   use: {
-    headless: false,
+    headless: !!process.env.CI,
   },
 };
 

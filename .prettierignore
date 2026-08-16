@@ -1,0 +1,7 @@
+node_modules
+traces
+recordings
+report.json
+cucumber_report.html
+package-lock.json
+.claude
