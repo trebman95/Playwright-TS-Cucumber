@@ -1,11 +1,19 @@
-import { Then } from '@cucumber/cucumber';
-import { getPage } from '../playwrightUtilities';
-import { Login } from '../pages/login.page';
+import { Then } from "@cucumber/cucumber";
+import { getPage } from "../playwrightUtilities";
+import { Login } from "../pages/login.page";
 
-Then('I should see the title {string}', async (expectedTitle) => {
+// Login step definitions delegate browser work to the Login page object.
+Then("I should see the title {string}", async (expectedTitle) => {
   await new Login(getPage()).validateTitle(expectedTitle);
 });
 
-Then('I will login as {string}', async (userName) => {
+Then("I will login as {string}", async (userName) => {
   await new Login(getPage()).loginAsUser(userName);
 });
+
+Then(
+  "I should see the login error message {string}",
+  async (expectedMessage) => {
+    await new Login(getPage()).validateLoginErrorMessage(expectedMessage);
+  },
+);
