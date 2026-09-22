@@ -6,9 +6,9 @@ Feature: Purchase Feature
   Scenario:  Validate successful purchase text
   Then I will login as 'standard_user'
   Then I will add the backpack to the cart
-    # TODO: Select the cart (top-right)
-    # TODO: Select Checkout
-    # TODO: Fill in the First Name, Last Name, and Zip/Postal Code
-    # TODO: Select Continue
-    # TODO: Select Finish
-    # TODO: Validate the text 'Thank you for your order!'
+  Then I will open the cart
+  Then I will click checkout
+  Then I will enter the checkout information
+  Then I will click continue
+  Then I will click finish
+  Then I should see the purchase message "Thank you for your order!"
