@@ -13,3 +13,8 @@ Feature: Product Feature
     | sort |
     | Price (low to high) |
     | Price (high to low) |
+  
+  Scenario: Validate cart item count
+  Then I will login as 'standard_user'
+  Then I will add the backpack to the cart
+  Then I should see "1" item in the cart

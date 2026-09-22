@@ -5,6 +5,7 @@ export class Product {
     private readonly addToCart: string = 'button[id="add-to-cart-sauce-labs-backpack"]'
     private readonly sortDropdown: string = '.product_sort_container'
     private readonly productPrice: string = '.inventory_item_price'
+    private readonly cartBadge: string = '.shopping_cart_badge'
 
     constructor(page: Page) {
         this.page = page
@@ -52,5 +53,15 @@ export class Product {
             }
         }
     }
-}
 
+    public async validateCartCount(expectedCount: string) {
+        const actualCount =
+            await this.page.locator(this.cartBadge).innerText()
+
+        if (actualCount !== expectedCount) {
+            throw new Error(
+                `Expected cart count ${expectedCount} but found ${actualCount}`
+            )
+        }
+    }
+}

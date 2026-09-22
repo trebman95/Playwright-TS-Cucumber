@@ -15,3 +15,7 @@ Then('I will sort the items by {string}', async (sort) => {
 Then('I should see all products sorted by {string}', async (sort) => {
     await new Product(getPage()).validateProductSort(sort);
 });
+
+Then('I should see {string} item in the cart', async (expectedCount) => {
+    await new Product(getPage()).validateCartCount(expectedCount);
+});
