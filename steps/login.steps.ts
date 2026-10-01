@@ -13,4 +13,4 @@ Then('I will login as {string}', async (userName) => {
 
 Then('I should see the error message {string}', async(error) =>{
   await expect(getPage().locator('[data-test="error"]')).toHaveText(error);
-})
+});
