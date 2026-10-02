@@ -37,3 +37,34 @@ Then('I will select Finish', async() => {
 Then('I should see the text {string}', async(complete) => {
  await expect (getPage().locator('[data-test="complete-header"]')).toHaveText(complete);
 });
+
+Then('I will sort the items by {string}', async (sort: string) => {
+    await new Product(getPage()).sortItems(sort);
+});
+
+
+Then('I will sort the products by price {string}', async (sort: string) => {
+    await new Product(getPage()).sortItems(sort);
+});
+
+
+Then(
+    'I will validate all {int} items that are sorted by price',
+    async (numberOfItems: number) => {
+        const product = new Product(getPage());
+
+        const sort = await getPage()
+            .locator('[data-test="product-sort-container"]')
+            .inputValue();
+
+        const sortOption =
+            sort === 'hilo'
+                ? 'Price (high to low)'
+                : 'Price (low to high)';
+
+        await product.validateItemsSortedByPrice(
+            numberOfItems,
+            sortOption
+        );
+    }
+);
