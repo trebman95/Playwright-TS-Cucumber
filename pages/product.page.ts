@@ -62,4 +62,5 @@ public async validateItemsSortedByPrice(numberOfItems: number, sort: string) {
 
     expect(names).toEqual(sortedNames);
  }
+
 }
