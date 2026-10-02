@@ -33,7 +33,7 @@ Cucumber (Gherkin) Support enhanced for Behat
 
 
 ## Instructions
-To run the test
+To run the test.
 ```bash
 npm run test
 ```
