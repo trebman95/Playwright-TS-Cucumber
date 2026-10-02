@@ -42,11 +42,9 @@ Then('I will sort the items by {string}', async (sort: string) => {
     await new Product(getPage()).sortItems(sort);
 });
 
-
 Then('I will sort the products by price {string}', async (sort: string) => {
     await new Product(getPage()).sortItems(sort);
 });
-
 
 Then(
     'I will validate all {int} items that are sorted by price',
@@ -65,6 +63,23 @@ Then(
         await product.validateItemsSortedByPrice(
             numberOfItems,
             sortOption
+        );
+    }
+);
+
+Then(
+    'I will sort the products by name {string}',
+    async (sort: string) => {
+        await new Product(getPage()).sortItems(sort);
+    }
+);
+
+Then(
+    'I will validate all {int} items that are sorted by name {string}',
+    async (numberOfItems: number, sort: string) => {
+        await new Product(getPage()).validateItemsSortedByName(
+            numberOfItems,
+            sort
         );
     }
 );

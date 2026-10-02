@@ -42,6 +42,24 @@ public async validateItemsSortedByPrice(numberOfItems: number, sort: string) {
     } else {
       expect(prices[i]).toBeGreaterThanOrEqual(prices[i - 1]);
     }
+   }
   }
-    }
+
+  public async validateItemsSortedByName(
+    numberOfItems: number,
+    sort: string) {
+    const productNames = this.page.locator('[data-test="inventory-item-name"]');
+
+    await expect(productNames).toHaveCount(numberOfItems);
+
+    const names = await productNames.allTextContents();
+
+    const sortedNames = [...names].sort((a, b) =>
+        sort === 'Name (A to Z)'
+            ? a.localeCompare(b)
+            : b.localeCompare(a)
+    );
+
+    expect(names).toEqual(sortedNames);
+ }
 }
