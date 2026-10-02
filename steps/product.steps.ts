@@ -1,6 +1,7 @@
 import { Then } from '@cucumber/cucumber';
 import { getPage } from '../playwrightUtilities';
 import { Product } from '../pages/product.page';
+import {expect} from '@playwright/test';
 
 Then('I will add the backpack to the cart', async () => {
   await new Product(getPage()).addBackPackToCart();
@@ -23,4 +24,16 @@ Then('I will fill in the First Name, Last Name, and Postal Code', async() => {
   await firstName.fill('Shawn');
   await lastName.fill('Michaels');
   await zipCode.fill('28208');
+});
+
+Then('I will select Continue', async() => {
+ await getPage().locator('[data-test="continue"]').click();
+});
+
+Then('I will select Finish', async() => {
+ await getPage().locator('[data-test="finish"]').click();
+});
+
+Then('I should see the text {string}', async(complete) => {
+ await expect (getPage().locator('[data-test="complete-header"]')).toHaveText(complete);
 });
